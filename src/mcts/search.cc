@@ -1109,10 +1109,10 @@ void SearchWorker::FetchSingleNodeResult(NodeToProcess* node_to_process,
   }
   // For NN results, we need to populate policy as well as value.
   // First the value...
-  auto contempt = 0.005 * (node_to_process->piececount - 32);
+  auto penalty = params_.GetTradePenalty() * (node_to_process->piececount - params_.GetTradePenalty2());
   if(node_to_process->depth % 2 == 1)
-    contempt = -contempt;
-  node_to_process->v = -computation_->GetQVal(idx_in_computation) + contempt;
+    penalty = -penalty;
+  node_to_process->v = -computation_->GetQVal(idx_in_computation) + penalty;
   if(node_to_process->v < -1.0) {
     node_to_process->v = -0.9999;
   } else if (node_to_process->v > 1.0) {
