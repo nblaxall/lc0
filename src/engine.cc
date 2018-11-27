@@ -149,8 +149,8 @@ void EngineController::PopulateOptions(OptionsParser* options) {
   defaults->Set<int>(SearchParams::kMiniBatchSizeId.GetId(), 256);
   defaults->Set<float>(SearchParams::kFpuReductionId.GetId(), 1.2f);
   defaults->Set<float>(SearchParams::kCpuctId.GetId(), 3.4f);
-  defaults->Set<float>(SearchParams::kTradePenaltyId.GetId(), 0.0258f);
-  defaults->Set<float>(SearchParams::kTradePenalty2Id.GetId(), 11.1f);
+  defaults->Set<float>(SearchParams::kTradePenaltyId.GetId(), 0.0f);
+  defaults->Set<float>(SearchParams::kTradePenalty2Id.GetId(), 0.0f);
   defaults->Set<float>(SearchParams::kPolicySoftmaxTempId.GetId(), 2.2f);
   defaults->Set<int>(SearchParams::kMaxCollisionVisitsId.GetId(), 9999);
   defaults->Set<int>(SearchParams::kMaxCollisionEventsId.GetId(), 32);
