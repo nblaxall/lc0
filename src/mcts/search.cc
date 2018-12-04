@@ -1112,7 +1112,9 @@ void SearchWorker::FetchSingleNodeResult(NodeToProcess* node_to_process,
   auto penalty = params_.GetTradePenalty() * (node_to_process->piececount - params_.GetTradePenalty2());
   if(node_to_process->depth % 2 == 1)
     penalty = -penalty;
-  node_to_process->v = -computation_->GetQVal(idx_in_computation) + penalty;
+  auto board = search_->played_history_.Last().GetBoard();
+  auto contempt = params_.GetTradePenalty3() * (board.ours() + board.theirs()).count() - 0.036;
+  node_to_process->v = -computation_->GetQVal(idx_in_computation) + penalty + contempt;
   // ...and secondly, the policy data.
   float total = 0.0;
   for (auto edge : node->Edges()) {
